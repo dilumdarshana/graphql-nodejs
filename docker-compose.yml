@@ -1,0 +1,20 @@
+version: "3"
+
+services: 
+    app:
+        container_name: graphql-express
+        restart: always
+        working_dir: /app
+        volumes:
+            - ./:/app
+        ports: 
+            - 8000:8000
+        links:
+            - mongo
+    mongo:
+        container_name: graphql-express-mongo
+        image: mongo:4.2.2
+        ports: 
+            - 27030:27017
+        volumes:
+            -  ~/data/db/graphql:/data/db
