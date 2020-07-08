@@ -1,19 +1,21 @@
-version: "3"
+version: "3.8"
 
 services: 
-    app:
-        container_name: graphql-express
-        restart: always
+    graphql_node:
+        container_name: graphql_node
+        image: node:12.14.1
         working_dir: /app
         volumes:
             - ./:/app
+        depends_on:
+            - graphql_mongo
         ports: 
             - 8000:8000
-        links:
-            - mongo
-    mongo:
-        container_name: graphql-express-mongo
+    graphql_mongo:
+        container_name: graphql_mongo
         image: mongo:4.2.2
+        expose:
+            - 27017
         ports: 
             - 27030:27017
         volumes:
