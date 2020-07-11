@@ -5,10 +5,12 @@ const { ApolloServer } = require('apollo-server-express');
 const typeDefs = require('./schema/index');
 const resolvers = require('./resolver/index');
 
+// create express app
 const app = express();
 
 app.use(bodyParser.json())
 
+// create Apollo server
 const server = new ApolloServer({
     introspection: true,
     typeDefs,
@@ -24,8 +26,10 @@ const server = new ApolloServer({
     },
 });
 
+// add Apollo middleware to express
 server.applyMiddleware({ app, path: '/graphql' });
 
+// connect to Mongodb before create the Node server
 mongoose
     .connect('mongodb://graphql_mongo:27017/lyrics', { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true, useFindAndModify: false })
     .then(() => {
@@ -35,5 +39,5 @@ mongoose
         });
     })
     .catch(error => {
-        console.log('Error on connecting to MongoDB', error);
+        console.log('**** Error on connecting to MongoDB. Server start failed!', error);
     });
