@@ -8,6 +8,8 @@ const resolvers = require('./resolver/index');
 // create express app
 const app = express();
 
+require('dotenv').config()
+
 app.use(bodyParser.json())
 
 // create Apollo server

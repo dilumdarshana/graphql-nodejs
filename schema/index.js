@@ -19,11 +19,9 @@ const typeDefs = gql`
         authorId: ID!
         votes: Int
     }
-    input PostData {
-        id: Int!
-        title: String
-        authorId: ID!
-        votes: Int
+    input ArtistData {
+        name: String
+        alphabet: String
     }
     type Response {
         success: Boolean
@@ -34,7 +32,7 @@ const typeDefs = gql`
         author(id: Int!): Author
     }
     type Mutation {
-        createPost(post: PostData): Response
+        createArtist(artist: ArtistData): Response
     }
 `
 

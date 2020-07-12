@@ -16,18 +16,15 @@ const posts = [
 const resolvers =  {
     Query: {
         posts: () => posts,
-        post: (parent, { id }) => find(posts, { id }),
+        post: (_, { id }) => find(posts, { id }),
         author: (_, { id }) => find(authors, { id }),
     },
     Mutation: {
-        createPost: (_, newPost) => {
-            // console.log("new post",newPost.post.id);
-            posts.push(newPost.post)
-            // console.log("posts",posts);
-            let result = {
+        createArtist: (_, artist) => {
+            console.log('artist', artist, process.env.DB_HOST)
+            return {
                 success: true,
             }
-            return result
         },
     },
 }
