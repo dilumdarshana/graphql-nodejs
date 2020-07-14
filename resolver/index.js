@@ -1,4 +1,5 @@
 const { find, filter } = require('lodash');
+const ArtistService = require('../service/artistService');
 
 const authors = [
     { id: 1, firstName: "Tom", lastName: "Coleman" },
@@ -20,10 +21,12 @@ const resolvers =  {
         author: (_, { id }) => find(authors, { id }),
     },
     Mutation: {
-        createArtist: (_, artist) => {
-            console.log('artist', artist, process.env.DB_HOST)
+        createArtist: async (_, { artist }) => {
+            const result = await ArtistService.create(artist);
+
             return {
                 success: true,
+                result,
             }
         },
     },

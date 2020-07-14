@@ -20,11 +20,16 @@ const typeDefs = gql`
         votes: Int
     }
     input ArtistData {
-        name: String
-        alphabet: String
+        name: String!
+        alphabet: String!
+    }
+    type Artist {
+        id: String!
+        name: String!
     }
     type Response {
         success: Boolean
+        result: Artist
     }
     type Query {
         posts: [Post]
