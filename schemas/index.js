@@ -1,6 +1,7 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
+    scalar DateTime
     type Author {
         id: Int!
         firstName: String
@@ -27,9 +28,17 @@ const typeDefs = gql`
         id: String!
         name: String!
     }
-    type Response {
+    type ArtistCreateResponse {
         success: Boolean
         result: Artist
+    }
+    input AlbumData {
+        name: String!
+        artist: String!
+        year: String!
+    }
+    type AlbumCreateResponse {
+        success: Boolean
     }
     type Query {
         posts: [Post]
@@ -37,7 +46,8 @@ const typeDefs = gql`
         author(id: Int!): Author
     }
     type Mutation {
-        createArtist(artist: ArtistData): Response
+        createArtist(artist: ArtistData): ArtistCreateResponse
+        createAlbum(album: AlbumData): AlbumCreateResponse
     }
 `
 

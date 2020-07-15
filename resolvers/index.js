@@ -29,6 +29,9 @@ const resolvers =  {
                 result,
             }
         },
+        createAlbum: async (_, { album }) => {
+            
+        }
     },
 }
 

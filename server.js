@@ -2,8 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const { ApolloServer } = require('apollo-server-express');
-const typeDefs = require('./schema/index');
-const resolvers = require('./resolver/index');
+const typeDefs = require('./schemas/');
+const resolvers = require('./resolvers/');
 
 // create express app
 const app = express();
